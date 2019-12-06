@@ -48,10 +48,13 @@ See the completed project here: [http://vuejs-calendar.vuejsdevelopers.com/](htt
     ```
     npm run start
     ```
+    sass-version has to be updated to newer version (npm install node-sass@4.13)
 
 6. Site is available at http://localhost:3003/ (sort set in `.env` file).
 
 7. Repo is at `https://github.com/nfritz98/vuejs-calendar`
+
+8. use node_modules/.bin/webpack XX to replace globally installes webpack-commands
 
 ## Sponsors
 
