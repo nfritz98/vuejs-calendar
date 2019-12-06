@@ -8,12 +8,15 @@
    export default {
        data(){
             return {
+           //     month: 2,
+           //     year: 2017
                 month: 12,
-                year: 2020
+                year: 2019
             }
        },
        computed: {
            days(){
+               //generating all days in current month
                let days = [];
                let currentDay = this.$moment(`${this.year}-${this.month}-1`, 'YYYY-M-D');
                do{
@@ -22,6 +25,31 @@
                    currentDay = this.$moment(currentDay.add( 1, 'days'));
                    //month + 1 needed, because january = 0
                }while((currentDay.month() + 1)  === this.month);
+
+
+               const SUNDAY = 0;
+               const MONDAY = 1;
+
+               //first day of month
+               currentDay = this.$moment(days[0]);
+               //add previous days to start of array
+               do{
+                   currentDay = this.$moment(currentDay).subtract(1, 'days');
+                   //unshift adds add start of array
+                   days.unshift(currentDay);
+
+               }while(currentDay.day() !== MONDAY);
+
+               //last day of month
+               currentDay = this.$moment(days[days.length -1]);
+               //add following days to end of array
+               do{
+                   currentDay = this.$moment(currentDay).add(1, 'days');
+                   //push adds add end of array
+                   days.push(currentDay);
+
+               }while(currentDay.day() !== SUNDAY);
+
                return days;
            }
        }
