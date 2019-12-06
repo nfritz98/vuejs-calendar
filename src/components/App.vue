@@ -32,23 +32,28 @@
 
                //first day of month
                currentDay = this.$moment(days[0]);
-               //add previous days to start of array
-               do{
-                   currentDay = this.$moment(currentDay).subtract(1, 'days');
-                   //unshift adds add start of array
-                   days.unshift(currentDay);
+               //add previous days to start of array, but only if current day is not first day to display
+               if(currentDay.day() !== MONDAY){
+                   do{
+                       currentDay = this.$moment(currentDay).subtract(1, 'days');
+                       //unshift adds add start of array
+                       days.unshift(currentDay);
 
-               }while(currentDay.day() !== MONDAY);
+                   }while(currentDay.day() !== MONDAY);
+               }
+
 
                //last day of month
                currentDay = this.$moment(days[days.length -1]);
-               //add following days to end of array
-               do{
-                   currentDay = this.$moment(currentDay).add(1, 'days');
-                   //push adds add end of array
-                   days.push(currentDay);
+               //add following days to end of array, but only if current day is not last day to display
+               if(currentDay.day() !== SUNDAY){
+                   do{
+                       currentDay = this.$moment(currentDay).add(1, 'days');
+                       //push adds add end of array
+                       days.push(currentDay);
 
-               }while(currentDay.day() !== SUNDAY);
+                   }while(currentDay.day() !== SUNDAY);
+               }
 
                return days;
            }
