@@ -32,9 +32,8 @@ See the completed project here: [http://vuejs-calendar.vuejsdevelopers.com/](htt
 3. Install dependencies
 
     ```
-    cd vuejs-calendar
     npm install
-    ```
+    ``` 
 
 4. Create a `.env` file by copying the sample
 
@@ -50,7 +49,9 @@ See the completed project here: [http://vuejs-calendar.vuejsdevelopers.com/](htt
     npm run start
     ```
 
-Your site will be available at *localhost:[PORT]* where `PORT` is whatever value is set in your `.env` file.
+6. Site is available at http://localhost:3003/ (sort set in `.env` file).
+
+7. Repo is at `https://github.com/nfritz98/vuejs-calendar`
 
 ## Sponsors
 
