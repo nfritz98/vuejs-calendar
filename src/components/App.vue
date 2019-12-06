@@ -15,13 +15,14 @@
        computed: {
            days(){
                let days = [];
-               let currentDay = this.$moment(`${this.year}-${this.month}-1`, 'D-M-YYYY');
-               days.push(currentDay);
+               let currentDay = this.$moment(`${this.year}-${this.month}-1`, 'YYYY-M-D');
+               do{
+                   days.push(currentDay);
+                   //need to create fresh instance, otherwise reference would be used
+                   currentDay = this.$moment(currentDay.add( 1, 'days'));
+                   //month + 1 needed, because january = 0
+               }while((currentDay.month() + 1)  === this.month);
                return days;
-            /*   do{
-
-
-               }while();*/
            }
        }
    }
