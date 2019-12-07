@@ -22,11 +22,18 @@
     export default {
        data(){
             return {
-                month: 12, //2
-                year: 2019 //2017
+                //use vuex to avoid hardcoded values for day and month, instead use currentYear & currentMonth
+               // month: 12, //2
+                //year: 2019 //2017
             }
        },
        computed: {
+           year(){
+               return this.$store.state.currentMonth;
+           },
+           month(){
+               return this.$store.state.currentYear;
+           },
            days(){
                //generating all days in current month
                let days = [];
