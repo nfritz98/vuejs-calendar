@@ -2,7 +2,7 @@
     <div id="event-form" :class="{ active: active }" :style="{ top: top, left: left }">
         <h4>Add an event</h4>
         <div class="text">
-            <input type="text" v-model="description">
+            <input type="text" placeholder="Enter description here" v-model="description">
         </div>
         <div class="buttons">
             <button @click="create">Create</button>
@@ -23,10 +23,12 @@
                 this.$store.commit('eventFormActive', false);
             },
             create() {
-                this.$store.commit('addEvent', this.description);
-                //close form and clear input on event-create
-                this.description = '';
-                this.$store.commit('eventFormActive' , false);
+                if(this.description.length > 0){
+                    this.$store.commit('addEvent', this.description);
+                    //close form and clear input on event-create
+                    this.description = '';
+                    this.$store.commit('eventFormActive' , false);
+                }
             }
         },
         computed: {
