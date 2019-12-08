@@ -25,10 +25,12 @@
             },
             create() {
                 if(this.description.length > 0){
-                    this.$store.dispatch('addEvent', this.description);
-                    //close form and clear input on event-create
-                    this.description = '';
-                    this.$store.commit('eventFormActive' , false);
+                    //then uses promise created in index.js addEvent-action
+                    this.$store.dispatch('addEvent', this.description).then(_ => {
+                        //close form and clear input on event-create, only when promise resolves
+                        this.description = '';
+                        this.$store.commit('eventFormActive' , false);
+                    });
                 }
             }
         },

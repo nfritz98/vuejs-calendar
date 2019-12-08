@@ -56,14 +56,23 @@ export default new Vuex.Store({
     },
     actions: {
         addEvent(context, payload) {
-            //push event events when status 200 is received
-            let obj = {
-                description: payload,
-                date: context.state.eventFormDate
-            };
-            context.commit('addEvent', obj);
-            //push events
-            Axios.post('/add_event', obj)
+            return new Promise((resolve, reject) => {
+                let obj = {
+                    description: payload,
+                    date: context.state.eventFormDate
+                };
+                //push events
+                Axios.post('/add_event', obj).then(response => {
+                    if(response.status === 200){
+                        //push event events when status 200 is received
+                        // => guarantees event is also saved on server
+                        context.commit('addEvent', obj);
+                        resolve();
+                    }else{
+                        reject();
+                    }
+                });
+            });
         }
     }
 });
