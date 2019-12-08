@@ -9,6 +9,7 @@
     export default {
         methods: {
             decrease(){
+                this.$store.commit('eventFormActive', false);
                 //Call mutation
                 if(this.month === 1){
                     this.$store.commit('setCurrentMonth', 12);
@@ -18,6 +19,7 @@
                 }
             },
             increase(){
+                this.$store.commit('eventFormActive', false);
                 if(this.month === 12){
                     this.$store.commit('setCurrentMonth', 1);
                     this.$store.commit('setCurrentYear', this.year + 1);
