@@ -48,17 +48,22 @@ export default new Vuex.Store({
             state.eventFormActive = payload;
         },
         addEvent(state, payload) {
-            //send event to server
-            let obj = {
-                description: payload,
-                date: state.eventFormDate
-            };
-            //push events
-            state.events.push(obj);
-            Axios.post('/add_event', obj)
+            state.events.push(payload);
         },
         eventFormDate(state, payload) {
             state.eventFormDate = payload;
+        }
+    },
+    actions: {
+        addEvent(context, payload) {
+            //push event events when status 200 is received
+            let obj = {
+                description: payload,
+                date: context.state.eventFormDate
+            };
+            context.commit('addEvent', obj);
+            //push events
+            Axios.post('/add_event', obj)
         }
     }
 });

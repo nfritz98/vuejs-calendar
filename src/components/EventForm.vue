@@ -25,7 +25,7 @@
             },
             create() {
                 if(this.description.length > 0){
-                    this.$store.commit('addEvent', this.description);
+                    this.$store.dispatch('addEvent', this.description);
                     //close form and clear input on event-create
                     this.description = '';
                     this.$store.commit('eventFormActive' , false);
