@@ -14,10 +14,14 @@ app.get('/', (req, res) => {
 
 });
 
-//store events on server tp prevent on reload
-//path,
-app.post('/add_event', (req, res) => {
 
+let events = [];
+
+app.use(require('body-parser').json());
+//store events on server tp prevent on reload
+app.post('/add_event', (req, res) => {
+  events.push(req.body);
+  res.sendStatus(200);
 });
 
 const server = http.createServer(app);
