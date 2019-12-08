@@ -5,17 +5,23 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const http = require('http');
+const moment = require('moment-timezone');
+moment.tz.setDefault('UTC');
+const serialize = require('serialize-javascript');
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
+let events = [
+  {  description: 'Event 1', date: moment('2019-12-06', 'YYYY-MM-DD')},
+  { description: 'Event 2', date: moment('2019-12-16', 'YYYY-MM-DD') },
+  { description: 'Event 3', date: moment('2019-11-26', 'YYYY-MM-DD')}
+];
+
 app.get('/', (req, res) => {
   let template = fs.readFileSync(path.resolve('./index.html'), 'utf-8');
-  res.send(template);
-
+  let contentMarker = '<!-- APP -->';
+  res.send(template.replace(contentMarker, `<script>var ___INITIAL_STATE___ = ${ serialize(events) }</script>`));
 });
-
-
-let events = [];
 
 app.use(require('body-parser').json());
 //store events on server tp prevent on reload
