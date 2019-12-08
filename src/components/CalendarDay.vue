@@ -11,12 +11,12 @@
         props: [ 'day' ],
         computed: {
             classObject() {
-                let isToday = this.day.isSame(this.$moment(), 'day');
+                let today = this.day.isSame(this.$moment(), 'day');
                 return {
                     day: true,
-                    today: isToday,
-                    past: this.day.isSameOrBefore(this.$moment(), 'day') && !isToday
-                }
+                    today,
+                    past: this.day.isSameOrBefore(this.$moment(), 'day') && !today
+                };
             },
             events(){
                 return this.$store.state.events.filter(event => event.date.isSame(this.day, 'day'));

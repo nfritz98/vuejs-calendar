@@ -29,28 +29,28 @@ export default new Vuex.Store({
         eventFormDate: null
     },
     mutations: {
-        setCurrentMonth(state, payload){
+        setCurrentMonth(state, payload) {
             //used to change month-value of store
             state.currentMonth = payload;
         },
-        setCurrentYear(state, payload){
+        setCurrentYear(state, payload) {
             //used to change year-value of store
             state.currentYear = payload;
         },
-        eventFormPosition(state, payload){
+        eventFormPosition(state, payload) {
             state.eventFormPositionX = payload.x;
             state.eventFormPositionY = payload.y;
         },
-        eventFormActive(state, payload){
+        eventFormActive(state, payload) {
             state.eventFormActive = payload;
         },
-        addEvent(state, payload){
+        addEvent(state, payload) {
             state.events.push({
-                    descripiton: payload,
-                    date: state.eventFormDate
+                description: payload,
+                date: state.eventFormDate
             });
         },
-        eventFormDate(state, payload){
+        eventFormDate(state, payload) {
             state.eventFormDate = payload;
         }
     }

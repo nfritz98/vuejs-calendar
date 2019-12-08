@@ -1,5 +1,5 @@
 <template>
-    <div id="event-form" :class="{active: active }" :style="{top: top, left: left}">
+    <div id="event-form" :class="{ active: active }" :style="{ top: top, left: left }">
         <h4>Add an event</h4>
         <div class="text">
             <input type="text" v-model="description">
@@ -13,27 +13,27 @@
 
 <script>
     export default {
-        data(){
-            return{
+        data() {
+            return {
                 description: ''
             }
         },
         methods: {
-            close(){
+            close() {
                 this.$store.commit('eventFormActive', false);
             },
-            create(){
+            create() {
                 this.$store.commit('addEvent', this.description);
             }
         },
         computed: {
-            top(){
+            top() {
                 return `${this.$store.state.eventFormPositionY}px`;
             },
-            left(){
+            left() {
                 return `${this.$store.state.eventFormPositionX}px`;
             },
-            active(){
+            active() {
                 return this.$store.state.eventFormActive;
             }
         }
