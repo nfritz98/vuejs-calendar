@@ -9,11 +9,11 @@
     export default {
         methods: {
             decrease(){
-                console.log('-');
+                //Call mutation
+                this.$store.commit('setCurrentMonth', this.month - 1);
             },
             increase(){
-                console.log('+');
-
+                this.$store.commit('setCurrentMonth', this.month + 1);
             },
         },
         computed: {
