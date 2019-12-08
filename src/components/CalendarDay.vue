@@ -19,22 +19,7 @@
                 }
             },
             events(){
-                let mockData = [
-                    {
-                        description: '111',
-                        date: this.$moment('2019-12-06', 'YYYY-MM-DD')
-                    },
-                    {
-                        description: '222',
-                        date: this.$moment('2019-12-16', 'YYYY-MM-DD')
-                    },
-                    {
-                        description: '333',
-                        date: this.$moment('2019-11-26', 'YYYY-MM-DD')
-                    }
-                ];
-
-                return mockData.filter(event => event.date.isSame(this.day, 'day'));
+                return this.$store.state.events.filter(event => event.date.isSame(this.day, 'day'));
             }
         },
         methods: {
