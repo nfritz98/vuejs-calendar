@@ -1,8 +1,7 @@
 import Vue from 'vue';
-import  './style.scss';
+import './style.scss';
 
 import Vuex from 'vuex';
-//add vuewx as plugin
 Vue.use(Vuex);
 
 import moment from 'moment-timezone';
@@ -11,20 +10,18 @@ Object.defineProperty(Vue.prototype, '$moment', { get() { return this.$root.mome
 
 import App from './components/App.vue';
 
-
 new Vue({
   el: '#app',
   data: {
     moment
   },
-  components:{
+  components: {
     App
   },
-  store: {
-    //contains state-data, like data in components
+  store : {
     state: {
-      currentYear: 2019,
-      currentMonth: 11
+      currentYear: 2017,
+      currentMonth: 1
     }
   }
 });
