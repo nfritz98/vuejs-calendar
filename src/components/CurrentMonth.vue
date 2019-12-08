@@ -7,10 +7,9 @@
 </template>
 <script>
     export default {
-        props: [ 'month' ],
         methods: {
             decrease(){
-console.log('-');
+                console.log('-');
             },
             increase(){
                 console.log('+');
