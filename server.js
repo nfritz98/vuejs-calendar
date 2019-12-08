@@ -14,6 +14,12 @@ app.get('/', (req, res) => {
 
 });
 
+//store events on server tp prevent on reload
+//path,
+app.post('/add_event', (req, res) => {
+
+});
+
 const server = http.createServer(app);
 
 if (process.env.NODE_ENV === 'development') {

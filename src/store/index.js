@@ -5,6 +5,9 @@ Vue.use(Vuex);
 import moment from 'moment-timezone';
 moment.tz.setDefault('UTC');
 
+//lib for http-requests, vue-ressource can't be used for serverside-rednering
+import Axios from 'axios';
+
 export default new Vuex.Store({
     state: {
         currentYear: 2019,
@@ -45,10 +48,14 @@ export default new Vuex.Store({
             state.eventFormActive = payload;
         },
         addEvent(state, payload) {
-            state.events.push({
+            //send event to server
+            let obj = {
                 description: payload,
                 date: state.eventFormDate
-            });
+            };
+            //push events
+            state.events.push(obj);
+            Axios.post('/add_event', obj)
         },
         eventFormDate(state, payload) {
             state.eventFormDate = payload;
