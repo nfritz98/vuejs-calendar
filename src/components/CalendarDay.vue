@@ -16,7 +16,8 @@
         },
         methods: {
             captureClick(event){
-                this.$store.commit('eventFormPosition', { x: event.clientX, y: event.clientY})
+                this.$store.commit('eventFormPosition', { x: event.clientX, y: event.clientY});
+                this.$store.commit('eventFormActive', true);
             }
         }
     }

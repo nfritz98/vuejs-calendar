@@ -7,7 +7,8 @@ export default new Vuex.Store({
         currentYear: 2019,
         currentMonth: 12,
         eventFormPositionX: 0,
-        eventFormPositionY: 0
+        eventFormPositionY: 0,
+        eventFormActive: false
     },
     mutations: {
         setCurrentMonth(state, payload){
@@ -21,6 +22,9 @@ export default new Vuex.Store({
         eventFormPosition(state, payload){
             state.eventFormPositionX = payload.x;
             state.eventFormPositionY = payload.y;
+        },
+        eventFormActive(state, payload){
+            state.eventFormActive = payload;
         }
     }
 });
