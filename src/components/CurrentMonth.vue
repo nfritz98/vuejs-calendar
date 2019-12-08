@@ -10,10 +10,20 @@
         methods: {
             decrease(){
                 //Call mutation
-                this.$store.commit('setCurrentMonth', this.month - 1);
+                if(this.month === 1){
+                    this.$store.commit('setCurrentMonth', 12);
+                    this.$store.commit('setCurrentYear', this.year - 1);
+                }else{
+                    this.$store.commit('setCurrentMonth', this.month - 1);
+                }
             },
             increase(){
-                this.$store.commit('setCurrentMonth', this.month + 1);
+                if(this.month === 12){
+                    this.$store.commit('setCurrentMonth', 1);
+                    this.$store.commit('setCurrentYear', this.year + 1);
+                }else{
+                    this.$store.commit('setCurrentMonth', this.month + 1);
+                }
             },
         },
         computed: {

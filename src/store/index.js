@@ -11,6 +11,10 @@ export default new Vuex.Store({
         setCurrentMonth(state, payload){
             //used to change value of store
             state.currentMonth = payload;
+        },
+        setCurrentYear(state, payload){
+            //used to change value of store
+            state.currentYear = payload;
         }
     }
 });
