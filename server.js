@@ -20,6 +20,13 @@ let events = [
 app.get('/', (req, res) => {
   let template = fs.readFileSync(path.resolve('./index.html'), 'utf-8');
   let contentMarker = '<!-- APP -->';
+  renderer,renderToString({}, (err, html) => {
+    if(err){
+      console.log(err);
+    }else{
+      console.log(html);
+    }
+  });
   res.send(template.replace(contentMarker, `<script>var ___INITIAL_STATE___ = ${ serialize(events) }</script>`));
 });
 
@@ -37,7 +44,7 @@ if (process.env.NODE_ENV === 'development') {
   const reloadServer = reload(app);
   require('./webpack-dev-middleware').init(app);
   require('./webpack-server-compiler').init(function (bundle) {
-    console.log('node bundle build !!!');
+    let renderer = require('vue-server-renderer').createBundleRenderer(bundle);
   });
 }
 
