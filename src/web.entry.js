@@ -1,13 +1,9 @@
-import Vue from 'vue';
-import './style.scss';
+//runs in browser
 
-import store from './store';
+import './style.scss';
 
 import moment from 'moment-timezone';
 moment.tz.setDefault('UTC');
-Object.defineProperty(Vue.prototype, '$moment', { get() { return this.$root.moment } });
-
-import App from './components/App.vue';
 
 let events = window.___INITIAL_STATE___.map(event => {
   return {
@@ -16,27 +12,7 @@ let events = window.___INITIAL_STATE___.map(event => {
   }
 });
 
-//state has to be replaced completely, not only events may be replaced
-//{} empty start, store.state is merges, events is also merges
-let initialState = Object.assign({}, store.state, {events});
-store.replaceState(initialState);
+import VueCalendar from './entry';
 
-new Vue({
-  el: '#app',
-  data: {
-    moment
-  },
-  components: {
-    App,
-  },
-  store,
-  render(createElement) {
-    let vNode = createElement (
-        'div', //tagname
-        { attrs: { id: 'app'} }, //options
-        [ createElement( 'app')] //children
-    );
-
-    return vNode;
-  }
-});
+//#app replaced el='#app'
+VueCalendar(events).$mount('#app');
