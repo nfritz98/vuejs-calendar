@@ -17,17 +17,22 @@ let events = [
   { description: 'Event 3', date: moment('2019-11-26', 'YYYY-MM-DD')}
 ];
 
+let renderer;
+
 app.get('/', (req, res) => {
   let template = fs.readFileSync(path.resolve('./index.html'), 'utf-8');
   let contentMarker = '<!-- APP -->';
-  renderer,renderToString({}, (err, html) => {
-    if(err){
-      console.log(err);
-    }else{
-      console.log(html);
-    }
-  });
-  res.send(template.replace(contentMarker, `<script>var ___INITIAL_STATE___ = ${ serialize(events) }</script>`));
+  if(renderer){
+    renderer,renderToString({}, (err, html) => {
+      if(err){
+        console.log(err);
+      }else{
+        res.send(template.replace(contentMarker, `<script>var ___INITIAL_STATE___ = ${ serialize(events) }</script>\n${html}`));
+      }
+    });
+  } else {
+    res.send('<p> Awaiting compilation </p>');
+  }
 });
 
 app.use(require('body-parser').json());
