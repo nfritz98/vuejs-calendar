@@ -24,13 +24,11 @@ export default function (events) {
     },
     store,
     render(createElement) {
-      let vNode = createElement (
+      return createElement (
           'div', //tagname
           { attrs: { id: 'app'} }, //options
           [ createElement( 'app')] //children
       );
-
-      return vNode;
     }
   });
 }

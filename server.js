@@ -23,11 +23,11 @@ app.get('/', (req, res) => {
   let template = fs.readFileSync(path.resolve('./index.html'), 'utf-8');
   let contentMarker = '<!-- APP -->';
   if(renderer){
-    renderer,renderToString({}, (err, html) => {
+    renderer.renderToString({}, (err, html) => {
       if(err){
         console.log(err);
       }else{
-        res.send(template.replace(contentMarker, `<script>var ___INITIAL_STATE___ = ${ serialize(events) }</script>\n${html}`));
+        res.send(template.replace(contentMarker, `<script>var __INITIAL_STATE__ = ${ serialize(events) }</script>\n${html}`));
       }
     });
   } else {
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV === 'development') {
   const reloadServer = reload(app);
   require('./webpack-dev-middleware').init(app);
   require('./webpack-server-compiler').init(function (bundle) {
-    let renderer = require('vue-server-renderer').createBundleRenderer(bundle);
+    renderer = require('vue-server-renderer').createBundleRenderer(bundle);
   });
 }
 
