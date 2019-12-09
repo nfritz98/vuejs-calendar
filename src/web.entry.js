@@ -29,5 +29,14 @@ new Vue({
   components: {
     App,
   },
-  store
+  store,
+  render(createElement) {
+    let vNode = createElement (
+        'div', //tagname
+        { attrs: { id: 'app'} }, //options
+        [ createElement( 'app')] //children
+    );
+
+    return vNode;
+  }
 });
